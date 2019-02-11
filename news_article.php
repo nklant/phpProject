@@ -56,7 +56,7 @@ if (isset($_GET['id'])) {
                         <?php echo $data['news_title']; ?> -
                         <small>posted on <?php echo date('l, jS', $data['news_postdate']); ?></small>
                     </h4>
-                    <a href="Admin/edit.php">Edit</a>
+                    <a href="#">Edit</a>
                     <p><?php echo $data['news_content']; ?></p>
                     <a href="index.php">&larr; Back</a>
                 </div>
