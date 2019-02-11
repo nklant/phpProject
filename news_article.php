@@ -56,7 +56,9 @@ if (isset($_GET['id'])) {
                         <?php echo $data['news_title']; ?> -
                         <small>posted on <?php echo date('l, jS', $data['news_postdate']); ?></small>
                     </h4>
+                    <?php if (isset($_SESSION['logged_in'])) { ?>
                     <a href="#">Edit</a>
+                    <?php } ?>
                     <p><?php echo $data['news_content']; ?></p>
                     <a href="index.php">&larr; Back</a>
                 </div>
