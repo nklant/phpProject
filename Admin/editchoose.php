@@ -60,6 +60,7 @@ if (isset($_SESSION['logged_in'])) {
                     <br>
                     <form action="editchoose.php" method="get">
                         <select onchange="this.form.submit();" name="id">
+                            <option value="" disabled selected>Select articles</option>
                             <?php foreach ($newsAll as $news) { ?> <!-- Loop through the data -->
                             <option value="<?php echo $news['news_id']; ?>"> <!-- Select the ID for submit -->
                                 <?php echo $news['news_title']; ?> <!-- Echo the title from DB -->
