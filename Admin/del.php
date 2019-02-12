@@ -4,6 +4,8 @@ include_once('../connection.php');
 include_once('../news.php');
 
 $news = new News;
+$deleted = false;
+$isDeleted = 'Article deleted successfully';
 
 if (isset($_SESSION['logged_in'])) {
     if (isset($_GET['id'])) { // If ID is provided, get it
@@ -11,8 +13,8 @@ if (isset($_SESSION['logged_in'])) {
         $query = $pdo->prepare("DELETE FROM news WHERE news_id = ?");
         $query->bindValue(1, $id); // Bind the value to the query above
         $query->execute(); // Execute the query
-        
-        header('Location: del.php'); // refresh the page
+        // header('Location: del.php'); // refresh the page
+        $deleted = true;
     }
     
     $newsAll = $news->fetch_all(); // Fetch all the data and store it in the variable
@@ -62,6 +64,7 @@ if (isset($_SESSION['logged_in'])) {
                     <br>
                     <form action="del.php" method="get">
                         <select onchange="this.form.submit();" name="id">
+                            <option value="" disabled selected>Select articles</option>
                             <?php foreach ($newsAll as $news) { ?> <!-- Loop through all the news and display them in dropdown -->
                             <option value="<?php echo $news['news_id']; ?>"> <!-- Send ID value on submit -->
                                 <?php echo $news['news_title']; ?> <!-- Display the news title -->
@@ -69,9 +72,9 @@ if (isset($_SESSION['logged_in'])) {
                             <?php } ?>
                         </select>
                     </form>
-                    <?php if (isset($error)) { ?> <!-- Throw an error -->
+                    <?php if ($deleted == true) { ?> <!-- Article deleted message -->
                     <small style="color:#aa0000;">
-                        <?php echo $error; ?>
+                        <?php echo $isDeleted; ?>
                     </small>
                     <?php } ?>
                     <br><br>
