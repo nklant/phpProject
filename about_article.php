@@ -30,7 +30,7 @@ if (isset($_GET['id'])) {
                 <div class="list-group list-group-flush">
                     <a href="index.php" class="list-group-item list-group-item-action bg-light">News</a>
                     <a href="events_article.php?id=1" class="list-group-item list-group-item-action bg-light">Events</a>
-                    <a href="about_article.php?id=1" class="list-group-item list-group-item-action bg-light">About Us</a>
+                    <a href="about_article.php?id=1" class="list-group-item list-group-item-action">About Us</a>
                 </div>
             </div>
             <div id="page-content-wrapper">
