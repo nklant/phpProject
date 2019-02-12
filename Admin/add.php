@@ -29,9 +29,12 @@ if (isset($_SESSION['logged_in'])) {
         <meta charset="UTF-8">
         <title>CMS Website</title>
         <link rel="stylesheet" href="../Styles/style.css">
+        <link rel="stylesheet" href="../Styles/widgEditor.css">
+
         <!-- Bootstrap core CSS -->
         <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="../Styles/sidebar.css" rel="stylesheet">
+        <script type="text/javascript" src="../Scripts/widgEditor.js"></script>
     </head>
     <body>
         <div class="d-flex" id="wrapper">
@@ -66,7 +69,7 @@ if (isset($_SESSION['logged_in'])) {
                     <br>
                     <form action="add.php" method="post" autocomplete="off">
                         <input type="text" name="title" placeholder="Title"><br><br>
-                        <textarea rows="15" cols="50" placeholder="Content" name="content"></textarea><br><br>
+                        <textarea class="widgEditor" rows="15" cols="50" placeholder="Content" name="content"></textarea><br><br>
                         <input type="submit" value="Submit">
                     </form>
                     <?php if (isset($error)) { ?> <!-- Throw an error -->
