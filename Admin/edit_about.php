@@ -35,9 +35,11 @@ if (isset($_SESSION['logged_in'])) {
             <meta charset="UTF-8">
             <title>CMS Website</title>
             <link rel="stylesheet" href="../Styles/style.css">
+            <link rel="stylesheet" href="../Styles/widgEditor.css">
             <!-- Bootstrap core CSS -->
             <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
             <link href="../Styles/sidebar.css" rel="stylesheet">
+            <script type="text/javascript" src="../Scripts/widgEditor.js"></script>
         </head>
 
         <body>
@@ -73,7 +75,7 @@ if (isset($_SESSION['logged_in'])) {
                         <br>
                         <form action="edit_about.php?id=1" method="post" autocomplete="off"> <!-- On submit update the specific article -->
                             <input type="text" name="title" placeholder="Title" value="<?php echo $data['about_title']; ?>"><br><br> <!-- Fill out the fields for edit -->
-                            <textarea rows="15" cols="50" placeholder="Content" name="content"><?php echo $data['about_content']; ?></textarea><br><br>
+                            <textarea class="widgEditor" rows="15" cols="50" placeholder="Content" name="content"><?php echo $data['about_content']; ?></textarea><br><br>
                             <input type="submit" value="Submit">
                         </form>
                         <?php if (isset($error)) { ?> <!-- Throw an error -->
