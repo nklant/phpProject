@@ -23,7 +23,7 @@ if (isset($_SESSION['logged_in'])) {
         <div class="bg-light border-right" id="sidebar-wrapper">
             <div class="sidebar-heading"><a href="../index.php" id="logo">CMS News Website</a></div>
             <div class="list-group list-group-flush">
-                <a href="../index.php" class="list-group-item list-group-item-action bg-light">Home</a>
+                <a href="../index.php" class="list-group-item list-group-item-action bg-light">News</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">About Us</a>
@@ -34,14 +34,14 @@ if (isset($_SESSION['logged_in'])) {
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item">
                         <?php if (isset($_SESSION['logged_in'])) { ?>
-                        <a class="nav-link" href="Admin/index.php">Admin <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="index.php">Admin <span class="sr-only">(current)</span></a>
                         <?php } else { ?>
-                        <a class="nav-link" href="Admin/index.php">Login <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="index.php">Login <span class="sr-only">(current)</span></a>
                         <?php }?>
                     </li>
                     <li class="nav-item">
                         <?php if (isset($_SESSION['logged_in'])) { ?>
-                        <a class="nav-link" href="Admin/logout.php">Logout <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="logout.php">Logout <span class="sr-only">(current)</span></a>
                         <?php } ?>
                     </li>
                 </ul>
@@ -51,6 +51,7 @@ if (isset($_SESSION['logged_in'])) {
                 <br>
                 <ul>
                     <li><a href="add.php">Add News Article</a></li>
+                    <li><a href="editchoose.php">Edit News Article</a></li>
                     <li><a href="del.php">Delete News Article</a></li>
                 </ul>
                 <br>
@@ -114,7 +115,7 @@ if (isset($_SESSION['logged_in'])) {
         <div class="bg-light border-right" id="sidebar-wrapper">
             <div class="sidebar-heading"><a href="../index.php" id="logo">CMS News Website</a></div>
             <div class="list-group list-group-flush">
-                <a href="../index.php" class="list-group-item list-group-item-action bg-light">Home</a>
+                <a href="../index.php" class="list-group-item list-group-item-action bg-light">News</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">About Us</a>

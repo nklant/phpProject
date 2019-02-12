@@ -8,11 +8,9 @@ $news = new News;
 if (isset($_SESSION['logged_in'])) {
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
-        $query = $pdo->prepare("DELETE FROM news WHERE news_id = ?");
-        $query->bindValue(1, $id);
-        $query->execute();
+        $data = $news->fetch_data($id);
         
-        header('Location: del.php'); // refresh the page
+        header('Location: ../edit.php?id='.$id);
     }
     
     $newsAll = $news->fetch_all();
@@ -59,9 +57,9 @@ if (isset($_SESSION['logged_in'])) {
                     </ul>
                 </nav>
                 <div class="container-fluid center">
-                    <h3>Delete News Article</h3>
+                    <h3>Edit News Article</h3>
                     <br>
-                    <form action="del.php" method="get">
+                    <form action="editchoose.php" method="get">
                         <select onchange="this.form.submit();" name="id">
                             <?php foreach ($newsAll as $news) { ?>
                             <option value="<?php echo $news['news_id']; ?>">

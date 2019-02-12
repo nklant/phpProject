@@ -28,7 +28,7 @@ if (isset($_GET['id'])) {
             <div class="bg-light border-right" id="sidebar-wrapper">
                 <div class="sidebar-heading"><a href="index.php" id="logo">CMS News Website</a></div>
                 <div class="list-group list-group-flush">
-                    <a href="index.php" class="list-group-item list-group-item-action bg-light">Home</a>
+                    <a href="index.php" class="list-group-item list-group-item-action bg-light">News</a>
                     <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
                     <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
                     <a href="#" class="list-group-item list-group-item-action bg-light">About Us</a>
@@ -57,7 +57,7 @@ if (isset($_GET['id'])) {
                         <small>posted on <?php echo date('l, jS', $data['news_postdate']); ?></small>
                     </h4>
                     <?php if (isset($_SESSION['logged_in'])) { ?>
-                    <a href="#">Edit</a>
+                    <a href="edit.php?id=<?php echo $data['news_id']; ?>">Edit</a>
                     <?php } ?>
                     <p><?php echo $data['news_content']; ?></p>
                     <a href="index.php">&larr; Back</a>

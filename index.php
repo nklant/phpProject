@@ -23,7 +23,7 @@ $newsAll = $news->fetch_all();
         <div class="bg-light border-right" id="sidebar-wrapper">
             <div class="sidebar-heading"><a href="index.php" id="logo">CMS News Website</a></div>
             <div class="list-group list-group-flush">
-                <a href="index.php" class="list-group-item list-group-item-action bg-light">Home</a>
+                <a href="index.php" class="list-group-item list-group-item-action bg-light">News</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">About Us</a>
