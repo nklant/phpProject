@@ -27,3 +27,7 @@ small {
 p {
     line-height: 30px;
 }
+
+#underline {
+    border-bottom: double;
+}

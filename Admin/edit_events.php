@@ -1,14 +1,14 @@
 <?php
 session_start();
-include_once('connection.php');
-include_once('news.php');
+include_once('../connection.php');
+include_once('../events.php');
 
-$news = new News;
+$events = new Events;
 
 if (isset($_SESSION['logged_in'])) {
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
-        $data = $news->fetch_data($id);
+        $data = $events->fetch_data($id);
         
         if (isset($_POST['title'], $_POST['content'])) {
         $title = $_POST['title'];
@@ -17,15 +17,14 @@ if (isset($_SESSION['logged_in'])) {
         if (empty($title) or empty($content)) {
             $error = 'All fields are required!';    
         }else {
-            $query = $pdo->prepare("UPDATE news SET news_title = ?, news_content = ?, news_postdate = ? WHERE news_id = ?");
+            $query = $pdo->prepare("UPDATE events SET event_title = ?, event_content = ? WHERE event_id = ?");
             $query->bindValue(1, $title);
             $query->bindValue(2, $content);
-            $query->bindValue(3, time());
-            $query->bindValue(4, $id);
+            $query->bindValue(3, $id);
             
             $query->execute();
             
-            header('Location: index.php');
+            header('Location: ../events_article.php?id=1');
         }
     }
 ?>
@@ -37,19 +36,19 @@ if (isset($_SESSION['logged_in'])) {
             <title>CMS Website</title>
             <link rel="stylesheet" href="Styles/style.css">
             <!-- Bootstrap core CSS -->
-            <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-            <link href="Styles/sidebar.css" rel="stylesheet">
+            <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+            <link href="../Styles/sidebar.css" rel="stylesheet">
         </head>
 
         <body>
             <div class="d-flex" id="wrapper">
                 <!-- Sidebar -->
                 <div class="bg-light border-right" id="sidebar-wrapper">
-                    <div class="sidebar-heading"><a href="index.php" id="logo">CMS News Website</a></div>
+                    <div class="sidebar-heading"><a href="../index.php" id="logo">CMS News Website</a></div>
                     <div class="list-group list-group-flush">
-                        <a href="index.php" class="list-group-item list-group-item-action bg-light">News</a>
-                        <a href="events_article.php?id=1" class="list-group-item list-group-item-action bg-light">Events</a>
-                        <a href="about_article.php?id=1" class="list-group-item list-group-item-action bg-light">About Us</a>
+                        <a href="../index.php" class="list-group-item list-group-item-action bg-light">News</a>
+                        <a href="../events_article.php?id=1" class="list-group-item list-group-item-action bg-light">Events</a>
+                        <a href="../about_article.php?id=1" class="list-group-item list-group-item-action bg-light">About Us</a>
                     </div>
                 </div>
                 <div id="page-content-wrapper">
@@ -70,11 +69,11 @@ if (isset($_SESSION['logged_in'])) {
                         </ul>
                     </nav>
                     <div class="container-fluid center">
-                        <h3>Edit News Article</h3>
+                        <h3>Edit The Events Page</h3>
                         <br>
-                        <form action="edit.php?id=<?php echo $data['news_id']; ?>" method="post" autocomplete="off">
-                            <input type="text" name="title" placeholder="Title" value="<?php echo $data['news_title']; ?>"><br><br>
-                            <textarea rows="15" cols="50" placeholder="Content" name="content"><?php echo $data['news_content']; ?></textarea><br><br>
+                        <form action="edit_events.php?id=1" method="post" autocomplete="off">
+                            <input type="text" name="title" placeholder="Title" value="<?php echo $data['event_title']; ?>"><br><br>
+                            <textarea rows="15" cols="50" placeholder="Content" name="content"><?php echo $data['event_content']; ?></textarea><br><br>
                             <input type="submit" value="Submit">
                         </form>
                         <?php if (isset($error)) { ?>
@@ -83,7 +82,7 @@ if (isset($_SESSION['logged_in'])) {
                         </small>
                         <?php } ?>
                         <br><br>
-                        <a href="index.php">&larr; Back</a>
+                        <a href="../events_article.php?id=1">&larr; Back</a>
                         <br><br><br>
                     </div>
                 </div>
@@ -98,7 +97,7 @@ if (isset($_SESSION['logged_in'])) {
         <?php
         }
     }else {
-        header('Location: index.php');
+        header('Location: ../index.php');
 }
 
 ?>

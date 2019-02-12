@@ -40,9 +40,8 @@ if (isset($_SESSION['logged_in'])) {
                 <div class="sidebar-heading"><a href="../index.php" id="logo">CMS News Website</a></div>
                 <div class="list-group list-group-flush">
                     <a href="../index.php" class="list-group-item list-group-item-action bg-light">News</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">About Us</a>
+                    <a href="../events_article.php?id=1" class="list-group-item list-group-item-action bg-light">Events</a>
+                    <a href="../about_article.php?id=1" class="list-group-item list-group-item-action bg-light">About Us</a>
                 </div>
             </div>
             <div id="page-content-wrapper">

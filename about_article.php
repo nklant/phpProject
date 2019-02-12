@@ -1,9 +1,9 @@
 <?php
 session_start();
 include_once('connection.php');
-include_once('news.php');
+include_once('about.php');
 
-$article = new News;
+$article = new About;
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -52,17 +52,12 @@ if (isset($_GET['id'])) {
                 </nav>
                 <div class="container-fluid">
                     <h4 id="underline">
-                        <?php echo $data['news_title']; ?> -
-                        <small>
-                            posted on <?php echo date('l, jS', $data['news_postdate']); ?>
-                            
-                        </small>
+                        <?php echo $data['about_title']; ?>
                     </h4>
                     
-                    <p><?php echo $data['news_content']; ?></p>
-                    <a href="index.php">&larr; Back</a> 
+                    <p><?php echo $data['about_content']; ?></p>
                     <?php if (isset($_SESSION['logged_in'])) { ?>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="edit.php?id=<?php echo $data['news_id']; ?>">&#9988; Edit</a>
+                        <a href="Admin/edit_about.php?id=1">&#9988; Edit</a>
                     <?php } ?>
                 </div>
             </div>
