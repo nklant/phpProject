@@ -2,8 +2,8 @@
 session_start();
 include_once('../connection.php');
 if (isset($_SESSION['logged_in'])) {
-    // display admin index
-    ?>
+    
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,14 +32,14 @@ if (isset($_SESSION['logged_in'])) {
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <?php if (isset($_SESSION['logged_in'])) { ?>
+                        <?php if (isset($_SESSION['logged_in'])) { ?> <!-- Check if the user has logged in and display "Admin" -->
                         <a class="nav-link" href="index.php">Admin <span class="sr-only">(current)</span></a>
                         <?php } else { ?>
                         <a class="nav-link" href="index.php">Login <span class="sr-only">(current)</span></a>
                         <?php }?>
                     </li>
                     <li class="nav-item">
-                        <?php if (isset($_SESSION['logged_in'])) { ?>
+                        <?php if (isset($_SESSION['logged_in'])) { ?> <!-- Check if the user has logged in and display "Logout" -->
                         <a class="nav-link" href="logout.php">Logout <span class="sr-only">(current)</span></a>
                         <?php } ?>
                     </li>
@@ -123,14 +123,14 @@ if (isset($_SESSION['logged_in'])) {
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <?php if (isset($_SESSION['logged_in'])) { ?>
+                        <?php if (isset($_SESSION['logged_in'])) { ?> <!-- Check if the user has logged in and display "Admin" -->
                         <a class="nav-link" href="Admin/index.php">Admin <span class="sr-only">(current)</span></a>
                         <?php } else { ?>
                         <a class="nav-link" href="Admin/index.php">Login <span class="sr-only">(current)</span></a>
                         <?php }?>
                     </li>
                     <li class="nav-item">
-                        <?php if (isset($_SESSION['logged_in'])) { ?>
+                        <?php if (isset($_SESSION['logged_in'])) { ?> <!-- Check if the user has logged in and display "Logout" -->
                         <a class="nav-link" href="Admin/logout.php">Logout <span class="sr-only">(current)</span></a>
                         <?php } ?>
                     </li>
@@ -144,7 +144,7 @@ if (isset($_SESSION['logged_in'])) {
                     <input type="password" name="password" placeholder="Password">
                     <input type="submit" value="Login">
                 </form>
-                <?php if (isset($error)) { ?>
+                <?php if (isset($error)) { ?> <!-- Throw error -->
                 <small style="color:#aa0000;">
                     <?php echo $error; ?></small>
                 <?php } ?>

@@ -6,16 +6,16 @@ include_once('../news.php');
 $news = new News;
 
 if (isset($_SESSION['logged_in'])) {
-    if (isset($_GET['id'])) {
+    if (isset($_GET['id'])) { // If ID is provided, get it
         $id = $_GET['id'];
         $query = $pdo->prepare("DELETE FROM news WHERE news_id = ?");
-        $query->bindValue(1, $id);
-        $query->execute();
+        $query->bindValue(1, $id); // Bind the value to the query above
+        $query->execute(); // Execute the query
         
         header('Location: del.php'); // refresh the page
     }
     
-    $newsAll = $news->fetch_all();
+    $newsAll = $news->fetch_all(); // Fetch all the data and store it in the variable
     
     ?>
     
@@ -44,14 +44,14 @@ if (isset($_SESSION['logged_in'])) {
                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item">
-                            <?php if (isset($_SESSION['logged_in'])) { ?>
+                            <?php if (isset($_SESSION['logged_in'])) { ?> <!-- Check if the user has logged in and display "Admin" -->
                                 <a class="nav-link" href="index.php">Admin <span class="sr-only">(current)</span></a>
                             <?php } else { ?>
                                 <a class="nav-link" href="index.php">Login <span class="sr-only">(current)</span></a>
                             <?php }?>
                         </li>
                         <li class="nav-item">
-                            <?php if (isset($_SESSION['logged_in'])) { ?>
+                            <?php if (isset($_SESSION['logged_in'])) { ?> <!-- Check if the user has logged in and display "Logout" -->
                                 <a class="nav-link" href="logout.php">Logout <span class="sr-only">(current)</span></a>
                             <?php } ?>
                         </li>
@@ -62,14 +62,14 @@ if (isset($_SESSION['logged_in'])) {
                     <br>
                     <form action="del.php" method="get">
                         <select onchange="this.form.submit();" name="id">
-                            <?php foreach ($newsAll as $news) { ?>
-                            <option value="<?php echo $news['news_id']; ?>">
-                                <?php echo $news['news_title']; ?>
+                            <?php foreach ($newsAll as $news) { ?> <!-- Loop through all the news and display them in dropdown -->
+                            <option value="<?php echo $news['news_id']; ?>"> <!-- Send ID value on submit -->
+                                <?php echo $news['news_title']; ?> <!-- Display the news title -->
                             </option>
                             <?php } ?>
                         </select>
                     </form>
-                    <?php if (isset($error)) { ?>
+                    <?php if (isset($error)) { ?> <!-- Throw an error -->
                     <small style="color:#aa0000;">
                         <?php echo $error; ?>
                     </small>

@@ -6,8 +6,8 @@ include_once('events.php');
 $article = new Events;
 
 if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    $data = $article->fetch_data($id);
+    $id = $_GET['id']; // Get the ID if it's set
+    $data = $article->fetch_data($id); // Get the data
     
     ?>
 
@@ -37,14 +37,14 @@ if (isset($_GET['id'])) {
                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item">
-                            <?php if (isset($_SESSION['logged_in'])) { ?>
+                            <?php if (isset($_SESSION['logged_in'])) { ?> <!-- Check if the user has logged in and display "Admin" -->
                                 <a class="nav-link" href="Admin/index.php">Admin <span class="sr-only">(current)</span></a>
                             <?php } else { ?>
                                 <a class="nav-link" href="Admin/index.php">Login <span class="sr-only">(current)</span></a>
                             <?php }?>
                         </li>
                         <li class="nav-item">
-                            <?php if (isset($_SESSION['logged_in'])) { ?>
+                            <?php if (isset($_SESSION['logged_in'])) { ?> <!-- Check if the user has logged in and display "Logout" -->
                                 <a class="nav-link" href="Admin/logout.php">Logout <span class="sr-only">(current)</span></a>
                             <?php } ?>
                         </li>
@@ -52,10 +52,10 @@ if (isset($_GET['id'])) {
                 </nav>
                 <div class="container-fluid">
                     <h4 id="underline">
-                        <?php echo $data['event_title']; ?>
+                        <?php echo $data['event_title']; ?> <!-- Echo the title from DB -->
                     </h4>
                     
-                    <p><?php echo $data['event_content']; ?></p>
+                    <p><?php echo $data['event_content']; ?></p> <!-- Echo the content from DB -->
                     <?php if (isset($_SESSION['logged_in'])) { ?>
                         <a href="Admin/edit_events.php?id=1">&#9988; Edit</a>
                     <?php } ?>

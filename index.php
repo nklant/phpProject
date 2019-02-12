@@ -2,8 +2,8 @@
 session_start();
 include_once('connection.php');
 include_once('news.php');
-$news = new News;
-$newsAll = $news->fetch_all();
+$news = new News; // Initialize the News class
+$newsAll = $news->fetch_all(); // fetch all the data
 ?>
 
 <!DOCTYPE html>
@@ -32,14 +32,14 @@ $newsAll = $news->fetch_all();
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <?php if (isset($_SESSION['logged_in'])) { ?>
+                        <?php if (isset($_SESSION['logged_in'])) { ?> <!-- Check if the user has logged in and display "Admin" -->
                             <a class="nav-link" href="Admin/index.php">Admin <span class="sr-only">(current)</span></a>
                         <?php } else { ?>
                             <a class="nav-link" href="Admin/index.php">Login <span class="sr-only">(current)</span></a>
                         <?php }?>
                     </li>
                     <li class="nav-item">
-                        <?php if (isset($_SESSION['logged_in'])) { ?>
+                        <?php if (isset($_SESSION['logged_in'])) { ?> <!-- Check if the user has logged in and display "Logout" -->
                             <a class="nav-link" href="Admin/logout.php">Logout <span class="sr-only">(current)</span></a>
                         <?php } ?>
                     </li>
@@ -47,11 +47,11 @@ $newsAll = $news->fetch_all();
             </nav>
             <div class="container-fluid">
                 <ul>
-                    <?php foreach($newsAll as $news) { ?>
+                    <?php foreach($newsAll as $news) { ?> <!-- Foreach loop to display all the news from DB -->
                     <li>
-                        <a href="news_article.php?id=<?php echo $news['news_id']; ?>">
-                            <?php echo $news['news_title']; ?></a> -
-                        <small>posted on <?php echo date('l, jS', $news['news_postdate']); ?></small>
+                        <a href="news_article.php?id=<?php echo $news['news_id']; ?>"> <!-- Echo the id of the news article on select -->
+                            <?php echo $news['news_title']; ?></a> - <!-- Get the title from DB -->
+                        <small>posted on <?php echo date('l, jS', $news['news_postdate']); ?></small> <!-- Get the timestamp from DB and format the display type -->
                     </li>
                     <?php } ?>
                 </ul>

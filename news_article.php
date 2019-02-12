@@ -10,7 +10,7 @@ if (isset($_GET['id'])) {
     $data = $article->fetch_data($id);
     
     ?>
-
+                                            <!-- This file is reusable for every news article -->
     <!DOCTYPE html>
     <html lang="en">
 
@@ -37,14 +37,14 @@ if (isset($_GET['id'])) {
                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item">
-                            <?php if (isset($_SESSION['logged_in'])) { ?>
+                            <?php if (isset($_SESSION['logged_in'])) { ?> <!-- Check if the user has logged in and display "Admin" -->
                                 <a class="nav-link" href="Admin/index.php">Admin <span class="sr-only">(current)</span></a>
                             <?php } else { ?>
                                 <a class="nav-link" href="Admin/index.php">Login <span class="sr-only">(current)</span></a>
                             <?php }?>
                         </li>
                         <li class="nav-item">
-                            <?php if (isset($_SESSION['logged_in'])) { ?>
+                            <?php if (isset($_SESSION['logged_in'])) { ?> <!-- Check if the user has logged in and display "Logout" -->
                                 <a class="nav-link" href="Admin/logout.php">Logout <span class="sr-only">(current)</span></a>
                             <?php } ?>
                         </li>
@@ -54,14 +54,14 @@ if (isset($_GET['id'])) {
                     <h4 id="underline">
                         <?php echo $data['news_title']; ?> -
                         <small>
-                            posted on <?php echo date('l, jS', $data['news_postdate']); ?>
+                            posted on <?php echo date('l, jS', $data['news_postdate']); ?> <!-- Echo and format the timestamp -->
                             
                         </small>
                     </h4>
                     
-                    <p><?php echo $data['news_content']; ?></p>
+                    <p><?php echo $data['news_content']; ?></p> <!-- Echo the new content from DB -->
                     <a href="index.php">&larr; Back</a> 
-                    <?php if (isset($_SESSION['logged_in'])) { ?>
+                    <?php if (isset($_SESSION['logged_in'])) { ?> <!-- Check if logged in to display the "Edit" button -->
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="edit.php?id=<?php echo $data['news_id']; ?>">&#9988; Edit</a>
                     <?php } ?>
                 </div>
@@ -76,7 +76,7 @@ if (isset($_GET['id'])) {
 
     <?php
 }else {
-    header('Location: index.php');
+    header('Location: index.php'); // If no ID is provided on page load, redirect to index.php
     exit();
 }
 

@@ -6,9 +6,9 @@ include_once('news.php');
 $news = new News;
 
 if (isset($_SESSION['logged_in'])) {
-    if (isset($_GET['id'])) {
+    if (isset($_GET['id'])) { // If ID is set, get it
         $id = $_GET['id'];
-        $data = $news->fetch_data($id);
+        $data = $news->fetch_data($id); // Fetch all the data
         
         if (isset($_POST['title'], $_POST['content'])) {
         $title = $_POST['title'];
@@ -17,15 +17,15 @@ if (isset($_SESSION['logged_in'])) {
         if (empty($title) or empty($content)) {
             $error = 'All fields are required!';    
         }else {
-            $query = $pdo->prepare("UPDATE news SET news_title = ?, news_content = ?, news_postdate = ? WHERE news_id = ?");
-            $query->bindValue(1, $title);
+            $query = $pdo->prepare("UPDATE news SET news_title = ?, news_content = ?, news_postdate = ? WHERE news_id = ?"); // Update the corresponding article
+            $query->bindValue(1, $title); // Bind all the values to the query above
             $query->bindValue(2, $content);
             $query->bindValue(3, time());
             $query->bindValue(4, $id);
             
-            $query->execute();
+            $query->execute(); // Execute the query
             
-            header('Location: index.php');
+            header('Location: index.php'); // Redirect to index
         }
     }
 ?>
@@ -56,14 +56,14 @@ if (isset($_SESSION['logged_in'])) {
                     <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                             <li class="nav-item">
-                                <?php if (isset($_SESSION['logged_in'])) { ?>
+                                <?php if (isset($_SESSION['logged_in'])) { ?> <!-- Check if the user has logged in and display "Admin" -->
                                 <a class="nav-link" href="index.php">Admin <span class="sr-only">(current)</span></a>
                                 <?php } else { ?>
                                 <a class="nav-link" href="index.php">Login <span class="sr-only">(current)</span></a>
                                 <?php }?>
                             </li>
                             <li class="nav-item">
-                                <?php if (isset($_SESSION['logged_in'])) { ?>
+                                <?php if (isset($_SESSION['logged_in'])) { ?> <!-- Check if the user has logged in and display "Logout" -->
                                 <a class="nav-link" href="logout.php">Logout <span class="sr-only">(current)</span></a>
                                 <?php } ?>
                             </li>
@@ -72,12 +72,12 @@ if (isset($_SESSION['logged_in'])) {
                     <div class="container-fluid center">
                         <h3>Edit News Article</h3>
                         <br>
-                        <form action="edit.php?id=<?php echo $data['news_id']; ?>" method="post" autocomplete="off">
-                            <input type="text" name="title" placeholder="Title" value="<?php echo $data['news_title']; ?>"><br><br>
+                        <form action="edit.php?id=<?php echo $data['news_id']; ?>" method="post" autocomplete="off"> <!-- On submit update the specific article -->
+                            <input type="text" name="title" placeholder="Title" value="<?php echo $data['news_title']; ?>"><br><br> <!-- Fill out the fields for edit -->
                             <textarea rows="15" cols="50" placeholder="Content" name="content"><?php echo $data['news_content']; ?></textarea><br><br>
                             <input type="submit" value="Submit">
                         </form>
-                        <?php if (isset($error)) { ?>
+                        <?php if (isset($error)) { ?> <!-- Throw an error -->
                         <small style="color:#aa0000;">
                             <?php echo $error; ?>
                         </small>

@@ -4,21 +4,21 @@ include_once('../connection.php');
 
 if (isset($_SESSION['logged_in'])) {
     // add news
-    if (isset($_POST['title'], $_POST['content'])) {
+    if (isset($_POST['title'], $_POST['content'])) { // If title and content fields are NOT empty
         $title = $_POST['title'];
-        $content = nl2br($_POST['content']); // nl2br - why?? because line breaks, that's why!!! 
+        $content = nl2br($_POST['content']); // nl2br - Saves new lines to DB
         
         if (empty($title) or empty($content)) {
-            $error = 'All fields are required!';    
+            $error = 'All fields are required!'; // Throw an error if empty fields
         }else {
-            $query = $pdo->prepare("INSERT INTO news (news_title, news_content, news_postdate) VALUES (?, ?, ?)");
-            $query->bindValue(1, $title);
+            $query = $pdo->prepare("INSERT INTO news (news_title, news_content, news_postdate) VALUES (?, ?, ?)"); // Insert the new article in DB
+            $query->bindValue(1, $title); // bind the values to the query above
             $query->bindValue(2, $content);
             $query->bindValue(3, time());
             
             $query->execute();
             
-            header('Location: ../index.php');
+            header('Location: ../index.php'); // Redirect to index
         }
     }
     ?>
@@ -48,14 +48,14 @@ if (isset($_SESSION['logged_in'])) {
                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item">
-                            <?php if (isset($_SESSION['logged_in'])) { ?>
+                            <?php if (isset($_SESSION['logged_in'])) { ?> <!-- Check if the user has logged in and display "Admin" -->
                                 <a class="nav-link" href="index.php">Admin <span class="sr-only">(current)</span></a>
                             <?php } else { ?>
                                 <a class="nav-link" href="index.php">Login <span class="sr-only">(current)</span></a>
                             <?php }?>
                         </li>
                         <li class="nav-item">
-                            <?php if (isset($_SESSION['logged_in'])) { ?>
+                            <?php if (isset($_SESSION['logged_in'])) { ?> <!-- Check if the user has logged in and display "Logout" -->
                                 <a class="nav-link" href="logout.php">Logout <span class="sr-only">(current)</span></a>
                             <?php } ?>
                         </li>
@@ -69,7 +69,7 @@ if (isset($_SESSION['logged_in'])) {
                         <textarea rows="15" cols="50" placeholder="Content" name="content"></textarea><br><br>
                         <input type="submit" value="Submit">
                     </form>
-                    <?php if (isset($error)) { ?>
+                    <?php if (isset($error)) { ?> <!-- Throw an error -->
                     <small style="color:#aa0000;">
                         <?php echo $error; ?>
                     </small>

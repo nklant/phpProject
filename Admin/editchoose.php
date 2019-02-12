@@ -6,14 +6,14 @@ include_once('../news.php');
 $news = new News;
 
 if (isset($_SESSION['logged_in'])) {
-    if (isset($_GET['id'])) {
+    if (isset($_GET['id'])) { // Get ID if it's set
         $id = $_GET['id'];
-        $data = $news->fetch_data($id);
+        $data = $news->fetch_data($id); // Fetch all data
         
-        header('Location: ../edit.php?id='.$id);
+        header('Location: ../edit.php?id='.$id); // Redirect to selected article for edit
     }
     
-    $newsAll = $news->fetch_all();
+    $newsAll = $news->fetch_all(); // Fetch all the data
     
     ?>
     
@@ -42,14 +42,14 @@ if (isset($_SESSION['logged_in'])) {
                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item">
-                            <?php if (isset($_SESSION['logged_in'])) { ?>
+                            <?php if (isset($_SESSION['logged_in'])) { ?> <!-- Check if the user has logged in and display "Admin" -->
                                 <a class="nav-link" href="index.php">Admin <span class="sr-only">(current)</span></a>
                             <?php } else { ?>
                                 <a class="nav-link" href="index.php">Login <span class="sr-only">(current)</span></a>
                             <?php }?>
                         </li>
                         <li class="nav-item">
-                            <?php if (isset($_SESSION['logged_in'])) { ?>
+                            <?php if (isset($_SESSION['logged_in'])) { ?> <!-- Check if the user has logged in and display "Logout" -->
                                 <a class="nav-link" href="logout.php">Logout <span class="sr-only">(current)</span></a>
                             <?php } ?>
                         </li>
@@ -60,14 +60,14 @@ if (isset($_SESSION['logged_in'])) {
                     <br>
                     <form action="editchoose.php" method="get">
                         <select onchange="this.form.submit();" name="id">
-                            <?php foreach ($newsAll as $news) { ?>
-                            <option value="<?php echo $news['news_id']; ?>">
-                                <?php echo $news['news_title']; ?>
+                            <?php foreach ($newsAll as $news) { ?> <!-- Loop through the data -->
+                            <option value="<?php echo $news['news_id']; ?>"> <!-- Select the ID for submit -->
+                                <?php echo $news['news_title']; ?> <!-- Echo the title from DB -->
                             </option>
                             <?php } ?>
                         </select>
                     </form>
-                    <?php if (isset($error)) { ?>
+                    <?php if (isset($error)) { ?> <!-- Throw an error -->
                     <small style="color:#aa0000;">
                         <?php echo $error; ?>
                     </small>
