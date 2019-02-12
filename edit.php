@@ -40,7 +40,7 @@ if (isset($_SESSION['logged_in'])) {
             <!-- Bootstrap core CSS -->
             <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
             <link href="Styles/sidebar.css" rel="stylesheet">
-            <script type="text/javascript" src="../project01/Scripts/widgEditor.js"></script>
+            <script type="text/javascript" src="Scripts/widgEditor.js"></script>
         </head>
 
         <body>
